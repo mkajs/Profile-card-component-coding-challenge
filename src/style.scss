@@ -1,0 +1,161 @@
+/// Variables
+
+$Dark-cyan: hsl(185, 75%, 39%);
+$Very-dark-desaturated-blue: hsl(229, 23%, 23%);
+$Dark-grayish-blue: hsl(227, 10%, 46%);
+$Dark-gray: hsl(0, 0%, 59%);
+
+//////////////////////////////////////////////////////////////
+///Responsive function
+@mixin respond($breakpoint) {
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 56.25em) {
+      @content;
+    } //900px
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+/// Resets
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  transition: all 0.3s;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 50%; // 1rem = 8px, 8px/16px = 50%
+
+  @include respond(desktop) {
+    //  600 < width?
+    font-size: 62.5%; //1 rem = 10px, 10/16 = 62.5%
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+/// Typography
+
+@font-face {
+  font-family: "iran-sans";
+  src: url("/src/fonts/IRANSansWeb.ttf");
+}
+@font-face {
+  font-family: "IRANSansWeb(FaNum)";
+  src: url("/src/fonts/IRANSansWeb\(FaNum\).ttf");
+}
+
+body {
+  font-family: "iran-sans", sans-serif;
+  background-color: $Dark-cyan;
+  color: $Dark-grayish-blue;
+
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
+//////////main styles
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.fa-num {
+  font-family: "IRANSansWeb(FaNum)";
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 35rem;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2rem 4rem rgba($color: #000000, $alpha: 0.1);
+
+  .card-bg {
+    width: 100%;
+    height: 14rem;
+  }
+  .avatar {
+    position: absolute;
+    top: 14rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10.5rem;
+    height: 10.5rem;
+    display: block;
+    border-radius: 100%;
+    border: 4px solid #fff;
+  }
+
+  .name {
+    margin-top: 7rem;
+    strong {
+      color: $Very-dark-desaturated-blue;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+  }
+
+  .location {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+  }
+  .seperator {
+    margin-top: 2.5rem;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: rgba($Dark-gray, 0.5);
+  }
+  .states {
+    width: 100%;
+    padding: 2.2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    .state {
+      strong {
+        color: $Very-dark-desaturated-blue;
+        font-weight: 700;
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}
+
+.bg-pattern {
+  position: absolute;
+  z-index: -1;
+  &--top {
+    top: 0;
+    right: 50%;
+    transform: translateY(-50%);
+  }
+  &--bottom {
+    bottom: 0;
+    left: 50%;
+    transform: translateY(50%);
+  }
+}
